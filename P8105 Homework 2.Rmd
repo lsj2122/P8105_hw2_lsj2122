@@ -1,0 +1,6 @@
+---
+title: "P8105 Homework 2"
+author: "Laylah Jones"
+date: 2023-09-27
+output: github_document
+---
