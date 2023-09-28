@@ -162,3 +162,20 @@ unemployment at a given time, the entire dataset ranges from 1947 to
 political party, “Close”, and “Unemployment rate”.
 
 # Problem 2
+
+Importing libraries
+
+``` r
+library(tidyverse)
+library(readxl)
+library(dplyr)
+```
+
+### Part 1. read and clean Mr. Trash Wheel data
+
+``` r
+mtw_df = 
+  read_excel("./Mr Trash Wheel Data.xlsx", range = cell_cols("A:N")) |>
+  janitor::clean_names() |>
+  select(-dumpster) 
+```
