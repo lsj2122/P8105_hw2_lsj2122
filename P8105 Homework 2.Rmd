@@ -100,5 +100,19 @@ unemployment_df =
   ) 
 ```
 
+### Part 4. Merge data sets
+
+```{r}
+pols_snp_merge = 
+  left_join(pols_df, snp_df, by = c("year", "month"))
+
+merge_df = 
+  left_join(pols_snp_merge, unemployment_df, by = c("year", "month"))
+```
+
+### Part 5. Dataset explaination and description
+
+
+
 
 
