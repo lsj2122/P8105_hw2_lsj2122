@@ -44,7 +44,7 @@ pols_df =
       prez_gop == 1 ~ "gop"
     )
   ) |>
-  select(-day)
+  select(-prez_dem, -prez_gop, -day)
 ```
 
 ### Part 2. Now we will read and clean snp.csv data.
@@ -52,8 +52,10 @@ pols_df =
 snp_df = 
   read.csv("./fivethirtyeight_datasets/snp.csv") |>
   janitor::clean_names() |>
-  separate(date, c("year", "month", "day"), convert = TRUE) |>
+  separate(date, c("month", "day", "year"), convert = TRUE) |>
   mutate(
+    year = as.numeric(year),
+    year=ifelse(year<=20,year+2000,year+1900),
     month = case_when(
       month == 1 ~ "January",
       month == 2 ~ "February",
@@ -68,7 +70,8 @@ snp_df =
       month == 11 ~ "November",
       month == 12 ~ "December"
     )
-  ) |>
+  )|>
+  select(-day) |>
   select(year, month, close)
 ```
 
@@ -112,6 +115,11 @@ merge_df =
 
 ### Part 5. Dataset explaination and description
 
+The pols_df originally contained information about the presidency and the number of national politicians who were either democrat or republican at the time from 1947 to 2015, and was structured with a variable labelled "mon" signifying the date in the format of "YYYY-MM-DD". By cleaning the data, the "mon" variable was separated into integer variables for "year", "month", and "day". The "month" variable was then mutated from a numeric variable to the corresponding month name. Additionally, a "president" variable was created using the variables "gop" for Republican presidents and "dem" for Democratic presidents, while removing the "prez_dem" and "prex_gop" variables. The resulting pols_df dataset includes dimensions of 822 observed rows by 9 columns and key variables including "year", "month", "president" and other variables related to presidency.
+
+The snp_df originally contained information about the Standard & Poor stock market index, with columns for "year", "month", "day", and "close" values at the time from 1950 to 2015. Cleaning consisted of arranging the data by "year" and "month" to align with the other datasets. The dataset includes dimensions of 787 observed rows and 3 columns.
+
+The unemployment_df originally contained information about the percentage of unemployment from 1948 to 2015 in a "wide" format. 
 
 
 
