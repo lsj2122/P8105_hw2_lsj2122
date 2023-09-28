@@ -1,7 +1,7 @@
 P8105 Homework 2
 ================
 Laylah Jones
-2023-09-27
+2023-09-28
 
 # Problem 1
 
@@ -141,8 +141,13 @@ other variables related to presidency.
 The snp_df originally contained information about the Standard & Poor
 stock market index, with columns for “year”, “month”, “day”, and “close”
 values at the time from 1950 to 2015. Cleaning consisted of arranging
-the data by “year” and “month” to align with the other datasets. The
-dataset includes dimensions of 787 observed rows and 3 columns.
+the data by “year” and “month” to align with the other datasets, and
+changing the year from “YY” to “YYYY”. The dataset includes dimensions
+of 787 observed rows and 3 columns.
 
 The unemployment_df originally contained information about the
 percentage of unemployment from 1948 to 2015 in a “wide” format.
+Cleaning involved converting the dataset from a “wide” to “long” format.
+Key variables were mutated by changing it from lowercase to uppercase to
+align with the pols_df. The dataset includes dimensions of 610 observed
+rows by 3 columns. (6 rows were NA).
