@@ -125,7 +125,7 @@ merge_df =
 ### Part 5. Dataset explaination and description
 
 The pols_df originally contained information about the presidency and
-the number of national politicians who were either democrat or
+the number of national politicians who were either democratic or
 republican at the time from 1947 to 2015, and was structured with a
 variable labelled “mon” signifying the date in the format of
 “YYYY-MM-DD”. By cleaning the data, the “mon” variable was separated
@@ -151,3 +151,14 @@ Cleaning involved converting the dataset from a “wide” to “long” format.
 Key variables were mutated by changing it from lowercase to uppercase to
 align with the pols_df. The dataset includes dimensions of 610 observed
 rows by 3 columns. (6 rows were NA).
+
+The merge_df dataset was created by merging the three datasets above,
+using the left_join function. It includes dimensions of 822 observed
+rows and 11 columns. Variables include month, year, information of the
+presidency, number of national politicians who are democratic or
+republican, closing value of s&p stock index, and the percentage of
+unemployment at a given time, the entire dataset ranges from 1947 to
+2015. Key variables include “President” that signifies the presidents’
+political party, “Close”, and “Unemployment rate”.
+
+# Problem 2
