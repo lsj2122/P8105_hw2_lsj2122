@@ -140,7 +140,8 @@ library(dplyr)
 mtw_df = 
   read_excel("./Mr Trash Wheel Data.xlsx", range = cell_cols("A:N")) |>
   janitor::clean_names() |>
-  select(-dumpster) 
+  select(-dumpster) |>
+  mutate(sport)
 ```
 
 
