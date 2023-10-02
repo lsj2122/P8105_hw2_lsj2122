@@ -22,6 +22,12 @@ library(tidyverse)
     ## ✖ dplyr::lag()    masks stats::lag()
     ## ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
 
+``` r
+library(readxl)
+library(dplyr)
+library(tidyr)
+```
+
 ### Part 1. First we will read and clean the pols-month.csv data.
 
 ``` r
@@ -163,21 +169,29 @@ political party, “Close”, and “Unemployment rate”.
 
 # Problem 2
 
-Importing libraries
-
-``` r
-library(tidyverse)
-library(readxl)
-library(dplyr)
-library(tidyr)
-```
-
 ### Part 1. read and clean Mr. Trash Wheel data
 
 ``` r
 Mr_TrashWheel_df = 
-  read_excel("./Mr Trash Wheel Data.xlsx", range = cell_cols("A:N")) |>
+  read_excel("./Mr Trash Wheel Data.xlsx", range = cell_cols("A:N"), sheet = "Mr. Trash Wheel") |>
   janitor::clean_names() |>
   drop_na(dumpster) |>
+  mutate(name = "Mr Trash Wheel") |>
   mutate(homes_powered, homes_powered = weight_tons*500/30)
 ```
+
+### Part 2. read and clean Professor. Trash Wheel data
+
+``` r
+Prof_TrashWheel_df = 
+  read_excel("./Mr Trash Wheel Data.xlsx", range = cell_cols("A:N"), sheet = "Professor Trash Wheel") |>
+  janitor::clean_names() |>
+  drop_na(dumpster) |>
+  mutate(name = "Professor Trash Wheel") |>
+  mutate(homes_powered, homes_powered = weight_tons*500/30)
+```
+
+    ## New names:
+    ## • `` -> `...14`
+
+### Part 3. read and clean Gwynnda data
