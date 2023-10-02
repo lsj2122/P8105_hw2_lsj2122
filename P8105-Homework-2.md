@@ -169,13 +169,15 @@ Importing libraries
 library(tidyverse)
 library(readxl)
 library(dplyr)
+library(tidyr)
 ```
 
 ### Part 1. read and clean Mr. Trash Wheel data
 
 ``` r
-mtw_df = 
+Mr_TrashWheel_df = 
   read_excel("./Mr Trash Wheel Data.xlsx", range = cell_cols("A:N")) |>
   janitor::clean_names() |>
-  select(-dumpster) 
+  drop_na(dumpster) |>
+  mutate(homes_powered, homes_powered = weight_tons*500/30)
 ```
