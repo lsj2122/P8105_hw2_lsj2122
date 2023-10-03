@@ -173,7 +173,7 @@ political party, “Close”, and “Unemployment rate”.
 
 ``` r
 Mr_TrashWheel_df = 
-  read_excel("./Mr Trash Wheel Data.xlsx", range = cell_cols("A:N"), sheet = "Mr. Trash Wheel") |>
+  read_excel("./New Trash Wheel Data.xlsx", range = cell_cols("A:N"), sheet = "Mr. Trash Wheel") |>
   janitor::clean_names() |>
   drop_na(dumpster) |>
   mutate(name = "Mr Trash Wheel") |>
@@ -184,7 +184,7 @@ Mr_TrashWheel_df =
 
 ``` r
 Prof_TrashWheel_df = 
-  read_excel("./Mr Trash Wheel Data.xlsx", range = cell_cols("A:N"), sheet = "Professor Trash Wheel") |>
+  read_excel("./New Trash Wheel Data.xlsx", range = cell_cols("A:N"), sheet = "Professor Trash Wheel") |>
   janitor::clean_names() |>
   drop_na(dumpster) |>
   mutate(name = "Professor Trash Wheel") |>
@@ -198,7 +198,7 @@ Prof_TrashWheel_df =
 
 ``` r
 Gwynnda_TrashWheel_df = 
-  read_excel("./Mr Trash Wheel Data.xlsx", range = cell_cols("A:N"), sheet = "Gwynnda Trash Wheel") |>
+  read_excel("./New Trash Wheel Data.xlsx", range = cell_cols("A:N"), sheet = "Gwynnda Trash Wheel") |>
   janitor::clean_names() |>
   drop_na(dumpster) |>
   mutate(name = "Gwynnda Trash Wheel") |>
@@ -206,6 +206,16 @@ Gwynnda_TrashWheel_df =
 ```
 
     ## New names:
-    ## • `` -> `...12`
     ## • `` -> `...13`
     ## • `` -> `...14`
+
+### Part 4. combine datasets
+
+``` r
+Combined_TrashWheel_df = 
+  full_join(Prof_TrashWheel_df, Gwynnda_TrashWheel_df)
+```
+
+    ## Joining with `by = join_by(dumpster, month, year, date, weight_tons,
+    ## volume_cubic_yards, plastic_bottles, polystyrene, cigarette_butts,
+    ## plastic_bags, wrappers, homes_powered, x14, name)`

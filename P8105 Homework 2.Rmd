@@ -133,7 +133,7 @@ The merge_df dataset was created by merging the three datasets above, using the 
 
 ```{r}
 Mr_TrashWheel_df = 
-  read_excel("./Mr Trash Wheel Data.xlsx", range = cell_cols("A:N"), sheet = "Mr. Trash Wheel") |>
+  read_excel("./New Trash Wheel Data.xlsx", range = cell_cols("A:N"), sheet = "Mr. Trash Wheel") |>
   janitor::clean_names() |>
   drop_na(dumpster) |>
   mutate(name = "Mr Trash Wheel") |>
@@ -144,7 +144,7 @@ Mr_TrashWheel_df =
 
 ```{r}
 Prof_TrashWheel_df = 
-  read_excel("./Mr Trash Wheel Data.xlsx", range = cell_cols("A:N"), sheet = "Professor Trash Wheel") |>
+  read_excel("./New Trash Wheel Data.xlsx", range = cell_cols("A:N"), sheet = "Professor Trash Wheel") |>
   janitor::clean_names() |>
   drop_na(dumpster) |>
   mutate(name = "Professor Trash Wheel") |>
@@ -155,11 +155,18 @@ Prof_TrashWheel_df =
 
 ```{r}
 Gwynnda_TrashWheel_df = 
-  read_excel("./Mr Trash Wheel Data.xlsx", range = cell_cols("A:N"), sheet = "Gwynnda Trash Wheel") |>
+  read_excel("./New Trash Wheel Data.xlsx", range = cell_cols("A:N"), sheet = "Gwynnda Trash Wheel") |>
   janitor::clean_names() |>
   drop_na(dumpster) |>
   mutate(name = "Gwynnda Trash Wheel") |>
   mutate(homes_powered, homes_powered = weight_tons*500/30)
+```
+
+### Part 4. combine datasets
+
+```{r}
+Combined_TrashWheel_df = 
+  full_join(Prof_TrashWheel_df, Gwynnda_TrashWheel_df)
 ```
 
 
