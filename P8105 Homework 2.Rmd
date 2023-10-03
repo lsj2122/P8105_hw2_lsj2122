@@ -58,7 +58,7 @@ snp_df =
   separate(date, c("month", "day", "year"), convert = TRUE) |>
   mutate(
     year = as.numeric(year),
-    year=ifelse(year<=20,year+2000,year+1900),
+    year=if_else(year<=20, year+2000, year+1900),
     month = case_when(
       month == 1 ~ "January",
       month == 2 ~ "February",
@@ -153,6 +153,14 @@ Prof_TrashWheel_df =
 
 ### Part 3. read and clean Gwynnda data
 
+```{r}
+Gwynnda_TrashWheel_df = 
+  read_excel("./Mr Trash Wheel Data.xlsx", range = cell_cols("A:N"), sheet = "Gwynnda Trash Wheel") |>
+  janitor::clean_names() |>
+  drop_na(dumpster) |>
+  mutate(name = "Gwynnda Trash Wheel") |>
+  mutate(homes_powered, homes_powered = weight_tons*500/30)
+```
 
 
 
