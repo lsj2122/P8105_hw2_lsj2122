@@ -231,7 +231,7 @@ weight of the trash that was collected by Professor Trash Wheel was
 
 # Problem 3
 
-### Part 1. Import, clean, and tidy dataset
+### Part 1. Import, clean, and tidy baseline dataset
 
 ``` r
 Baseline_df = 
@@ -260,3 +260,30 @@ Baseline_df =
     ## 
     ## ℹ Use `spec()` to retrieve the full column specification for this data.
     ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+
+### Part 2. Discuss important steps and relevant features
+
+### Part 3. Import, clean, and tidy amyloid dataset
+
+``` r
+Amyloid_df = 
+  read_csv("./data_mci/mci_amyloid.csv", skip = 1) |>
+  janitor::clean_names() |>
+  rename("id" = "study_id") 
+```
+
+    ## Rows: 487 Columns: 6
+    ## ── Column specification ────────────────────────────────────────────────────────
+    ## Delimiter: ","
+    ## chr (5): Baseline, Time 2, Time 4, Time 6, Time 8
+    ## dbl (1): Study ID
+    ## 
+    ## ℹ Use `spec()` to retrieve the full column specification for this data.
+    ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+
+### Part 4. Combine both datasets
+
+``` r
+mci_merge = 
+  inner_join(Baseline_df, Amyloid_df, by = c("id")) 
+```
