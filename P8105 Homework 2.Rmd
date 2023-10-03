@@ -129,7 +129,7 @@ The merge_df dataset was created by merging the three datasets above, using the 
 
 # Problem 2
 
-### Part 1. read and clean Mr. Trash Wheel data
+### Part 1. Read and clean Mr. Trash Wheel data
 
 ```{r}
 Mr_TrashWheel_df = 
@@ -140,7 +140,7 @@ Mr_TrashWheel_df =
   mutate(homes_powered, homes_powered = weight_tons*500/30)
 ```
 
-### Part 2. read and clean Professor. Trash Wheel data
+### Part 2. Read and clean Professor. Trash Wheel data
 
 ```{r}
 Prof_TrashWheel_df = 
@@ -151,7 +151,7 @@ Prof_TrashWheel_df =
   mutate(homes_powered, homes_powered = weight_tons*500/30)
 ```
 
-### Part 3. read and clean Gwynnda data
+### Part 3. Read and clean Gwynnda data
 
 ```{r}
 Gwynnda_TrashWheel_df = 
@@ -162,11 +162,38 @@ Gwynnda_TrashWheel_df =
   mutate(homes_powered, homes_powered = weight_tons*500/30)
 ```
 
-### Part 4. combine datasets
+### Part 4. Combine datasets
 
 ```{r}
 Combined_TrashWheel_df = 
   full_join(Prof_TrashWheel_df, Gwynnda_TrashWheel_df)
+```
+
+### Part 5. Describing the data
+
+The Combined Trash Wheel data set is made up of the Mr. Trash Wheel, Professor Trash Wheel, and Gwynnda Trash Wheel data sets. It consists of `r nrow(Combined_TrashWheel_df)` rows and `r ncol(Combined_TrashWheel_df)` columns. The total weight of the trash that was collected by Professor Trash Wheel was ____ tons. And the total weight of the trash that was collected by Professor Trash Wheel was ___ tons. 
+
+# Problem 3
+
+### Part 1. Import, clean, and tidy dataset
+
+```{r}
+Baseline_df = 
+  read_csv("./data_mci/mci_baseline.csv", skip = 1) |>
+  janitor::clean_names() |>
+  mutate(
+    sex = case_match(
+      sex,
+      1 ~ "male",
+      0 ~ "female"
+    ),
+    apoe4 = case_match(
+      apoe4,
+      1 ~ "carrier",
+      0 ~ "non-carrier"
+    )
+  ) |>
+  filter(age_at_onset == "." | age_at_onset > current_age)
 ```
 
 

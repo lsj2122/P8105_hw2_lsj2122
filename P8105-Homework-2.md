@@ -169,7 +169,7 @@ political party, “Close”, and “Unemployment rate”.
 
 # Problem 2
 
-### Part 1. read and clean Mr. Trash Wheel data
+### Part 1. Read and clean Mr. Trash Wheel data
 
 ``` r
 Mr_TrashWheel_df = 
@@ -180,7 +180,7 @@ Mr_TrashWheel_df =
   mutate(homes_powered, homes_powered = weight_tons*500/30)
 ```
 
-### Part 2. read and clean Professor. Trash Wheel data
+### Part 2. Read and clean Professor. Trash Wheel data
 
 ``` r
 Prof_TrashWheel_df = 
@@ -194,7 +194,7 @@ Prof_TrashWheel_df =
     ## New names:
     ## • `` -> `...14`
 
-### Part 3. read and clean Gwynnda data
+### Part 3. Read and clean Gwynnda data
 
 ``` r
 Gwynnda_TrashWheel_df = 
@@ -209,7 +209,7 @@ Gwynnda_TrashWheel_df =
     ## • `` -> `...13`
     ## • `` -> `...14`
 
-### Part 4. combine datasets
+### Part 4. Combine datasets
 
 ``` r
 Combined_TrashWheel_df = 
@@ -219,3 +219,44 @@ Combined_TrashWheel_df =
     ## Joining with `by = join_by(dumpster, month, year, date, weight_tons,
     ## volume_cubic_yards, plastic_bottles, polystyrene, cigarette_butts,
     ## plastic_bags, wrappers, homes_powered, x14, name)`
+
+### Part 5. Describing the data
+
+The Combined Trash Wheel data set is made up of the Mr. Trash Wheel,
+Professor Trash Wheel, and Gwynnda Trash Wheel data sets. It consists of
+261 rows and 16 columns. The total weight of the trash that was
+collected by Professor Trash Wheel was \_\_\_\_ tons. And the total
+weight of the trash that was collected by Professor Trash Wheel was
+\_\_\_ tons.
+
+# Problem 3
+
+### Part 1. Import, clean, and tidy dataset
+
+``` r
+Baseline_df = 
+  read_csv("./data_mci/mci_baseline.csv", skip = 1) |>
+  janitor::clean_names() |>
+  mutate(
+    sex = case_match(
+      sex,
+      1 ~ "male",
+      0 ~ "female"
+    ),
+    apoe4 = case_match(
+      apoe4,
+      1 ~ "carrier",
+      0 ~ "non-carrier"
+    )
+  ) |>
+  filter(age_at_onset == "." | age_at_onset > current_age)
+```
+
+    ## Rows: 483 Columns: 6
+    ## ── Column specification ────────────────────────────────────────────────────────
+    ## Delimiter: ","
+    ## chr (1): Age at onset
+    ## dbl (5): ID, Current Age, Sex, Education, apoe4
+    ## 
+    ## ℹ Use `spec()` to retrieve the full column specification for this data.
+    ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
