@@ -297,7 +297,8 @@ The important steps in this import process included re-coding the `sex`
 and `apoe4` variables from numeric to characters, and removing
 participants who did not meet the criteria by having an onset of MCI
 earlier or at the same age at baseline. From this, 4 participants were
-removed from the data set.
+removed from the data set. We had to remove the first row of data due to
+it containing repeat information that is already found in the columns.
 
 In the study contained 479 participants and had 6 variables. Of the 479
 participants recruited at baseline, 93 developed MCI during the study.
@@ -327,6 +328,21 @@ Amyloid_df =
 
 ### Part 5. Discuss important steps and relevant features
 
+In order to import the Amyloid data, we had to remove the first row of
+data, similar to the Baseline data, because it contained repeat
+information. We renamed the `study_id` variable to `id` for consistancy
+when merging. The data set contains participant information during the
+study’s follow-up period. Key variables include `id` and `baseline`, as
+well as fixed time intervals labeled `time_2`, `time_4`, `time_6`, and
+`time_8`.
+
+All participants in `Baseline_df` are in `Amyloid_df`. However,
+participants with study id’s from 472 to 495 are only in the
+`Amyloid_df`. Without specific information, we can assume that some
+participants may only present in the `Amyloid_df` and not the
+`Baseline_df` because of participants being added to the dataset after
+the baseline data collection started.
+
 ### Part 6. Combine both datasets
 
 ``` r
@@ -335,3 +351,10 @@ colnames(Amyloid_df)[colnames(Amyloid_df) == "study_id"] = "id"
 mci_merge = 
   inner_join(Baseline_df, Amyloid_df, by = c("id")) 
 ```
+
+### Part 7. Description of combined dataset
+
+In order to combine the `Amyloid_df` and `Baseline_df` data sets, we
+used the the `inner_join` function to join them and include only
+participants who appear in both by using the `id` variable. The
+resulting `mci_merge` data set has 471 participants.
