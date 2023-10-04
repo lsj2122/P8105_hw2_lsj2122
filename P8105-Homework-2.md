@@ -276,6 +276,12 @@ Baseline_df =
     ## ℹ Use `spec()` to retrieve the full column specification for this data.
     ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
 
+``` r
+mean(Baseline_df$current_age)
+```
+
+    ## [1] 65.0286
+
 ### Part 2. Discuss important steps and relevant features
 
 The important steps in this import process included re-coding the `sex`
@@ -287,6 +293,8 @@ removed from the data set.
 In the study contained 479 participants and had 6 variables. Of the 479
 participants recruited at baseline, \_\_\_\_\_\_\_\_\_ developed MCI
 during the study.
+
+The average baseline age is 65.0286013
 
 ### Part 3. Import, clean, and tidy amyloid dataset
 
