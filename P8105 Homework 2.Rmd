@@ -171,7 +171,16 @@ Combined_TrashWheel_df =
 
 ### Part 5. Describing the data
 
-The Combined Trash Wheel data set is made up of the Mr. Trash Wheel, Professor Trash Wheel, and Gwynnda Trash Wheel data sets. It consists of `r nrow(Combined_TrashWheel_df)` rows and `r ncol(Combined_TrashWheel_df)` columns. The total weight of the trash that was collected by Professor Trash Wheel was ____ tons. And the total weight of the trash that was collected by Professor Trash Wheel was ___ tons. 
+The `Mr_TrashWheel_df` data set consists of `r nrow(Mr_TrashWheel_df)` observations and `r ncol(Mr_TrashWheel_df)` columns.
+
+The `Prof_TrashWheel_df` data set consists of `r nrow(Prof_TrashWheel_df)` observations and `r ncol(Prof_TrashWheel_df)` columns.
+
+The `Gwynnda_TrashWheel_df` data set consists of `r nrow(Gwynnda_TrashWheel_df)` observations and `r ncol(Gwynnda_TrashWheel_df)` columns.
+
+The Combined Trash Wheel data set is made up of the Mr. Trash Wheel, Professor Trash Wheel, and Gwynnda Trash Wheel data sets. It consists of `r nrow(Combined_TrashWheel_df)` observations and `r ncol(Combined_TrashWheel_df)` columns. 
+This combined data contains relevant information regarding trash collected. Key variables include dumpster id, date, weight (in tons), and the type of litter such as plastic bottles, cigarette butts, plastic bags, wrappers, etc. Missing data was found in the `glass_bottles`, `wrappers`, and `sports_balls` columns, signifying that the trash was not collected by those specific dumpsters. 
+
+The total weight of the trash that was collected by Professor Trash Wheel was `r subset(Combined_TrashWheel_df, trash_wheel_name = "Professor Trash Wheel") |> pull(weight_tons) |> sum()` tons. And the total number of the cigarette butts that was collected by Gwynnda Trash Wheel was . 
 
 # Problem 3
 
@@ -198,7 +207,9 @@ Baseline_df =
 
 ### Part 2. Discuss important steps and relevant features
 
+The important steps in this import process included re-coding the `sex` and `apoe4` variables from numeric to characters, and removing participants who did not meet the criteria by having an onset of MCI earlier or at the same age at baseline. From this, `r 483 - nrow(Baseline_df)` participants were removed from the data set. 
 
+In the study contained `r nrow(Baseline_df)` participants and had `r ncol(Baseline_df)` variables. Of the `r nrow(Baseline_df)` participants recruited at baseline, _________ developed MCI during the study. 
 
 
 ### Part 3. Import, clean, and tidy amyloid dataset
@@ -213,8 +224,20 @@ Amyloid_df =
 ### Part 4. Combine both datasets
 
 ```{r}
+colnames(Amyloid_df)[colnames(Amyloid_df) == "study_id"] = "id"
+  
 mci_merge = 
   inner_join(Baseline_df, Amyloid_df, by = c("id")) 
+
+female_apoe4 = 
+  filter(Baseline_df, sex == "female")
+
+baseline_carrier = 
+  filter(female_apoe4, apoe4 == "carrier")
+
+nrow(female_apoe4)
+
+nrow(baseline_carrier)
 ```
 
 

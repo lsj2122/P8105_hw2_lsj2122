@@ -222,12 +222,27 @@ Combined_TrashWheel_df =
 
 ### Part 5. Describing the data
 
+The `Mr_TrashWheel_df` data set consists of 584 observations and 15
+columns.
+
+The `Prof_TrashWheel_df` data set consists of 106 observations and 15
+columns.
+
+The `Gwynnda_TrashWheel_df` data set consists of 155 observations and 15
+columns.
+
 The Combined Trash Wheel data set is made up of the Mr. Trash Wheel,
 Professor Trash Wheel, and Gwynnda Trash Wheel data sets. It consists of
-261 rows and 16 columns. The total weight of the trash that was
-collected by Professor Trash Wheel was \_\_\_\_ tons. And the total
-weight of the trash that was collected by Professor Trash Wheel was
-\_\_\_ tons.
+261 observations and 16 columns. This combined data contains relevant
+information regarding trash collected. Key variables include dumpster
+id, date, weight (in tons), and the type of litter such as plastic
+bottles, cigarette butts, plastic bags, wrappers, etc. Missing data was
+found in the `glass_bottles`, `wrappers`, and `sports_balls` columns,
+signifying that the trash was not collected by those specific dumpsters.
+
+The total weight of the trash that was collected by Professor Trash
+Wheel was 667.91 tons. And the total number of the cigarette butts that
+was collected by Gwynnda Trash Wheel was .
 
 # Problem 3
 
@@ -263,6 +278,16 @@ Baseline_df =
 
 ### Part 2. Discuss important steps and relevant features
 
+The important steps in this import process included re-coding the `sex`
+and `apoe4` variables from numeric to characters, and removing
+participants who did not meet the criteria by having an onset of MCI
+earlier or at the same age at baseline. From this, 4 participants were
+removed from the data set.
+
+In the study contained 479 participants and had 6 variables. Of the 479
+participants recruited at baseline, \_\_\_\_\_\_\_\_\_ developed MCI
+during the study.
+
 ### Part 3. Import, clean, and tidy amyloid dataset
 
 ``` r
@@ -284,6 +309,24 @@ Amyloid_df =
 ### Part 4. Combine both datasets
 
 ``` r
+colnames(Amyloid_df)[colnames(Amyloid_df) == "study_id"] = "id"
+  
 mci_merge = 
   inner_join(Baseline_df, Amyloid_df, by = c("id")) 
+
+female_apoe4 = 
+  filter(Baseline_df, sex == "female")
+
+baseline_carrier = 
+  filter(female_apoe4, apoe4 == "carrier")
+
+nrow(female_apoe4)
 ```
+
+    ## [1] 210
+
+``` r
+nrow(baseline_carrier)
+```
+
+    ## [1] 63
