@@ -210,7 +210,16 @@ Baseline_df =
 
 mean(Baseline_df$current_age)
 
-filter(Baseline_df, age_at_onset !=".") |> nrow()
+female_apoe4 = 
+  filter(Baseline_df, sex == "female")
+
+baseline_carrier = 
+  filter(female_apoe4, apoe4 == "carrier")
+
+nrow(female_apoe4)
+
+nrow(baseline_carrier)
+
 ```
 
 ### Part 2. Discuss important steps and relevant features
@@ -221,6 +230,8 @@ In the study contained `r nrow(Baseline_df)` participants and had `r ncol(Baseli
 
 The average baseline age is `r mean(Baseline_df$current_age)`. 
 
+Of the `r nrow(female_apoe4)` women in the study, the proportion of them who are APOE4 carriers is `r nrow(baseline_carrier)`. 
+
 ### Part 3. Import, clean, and tidy amyloid dataset
 
 ```{r}
@@ -228,27 +239,22 @@ Amyloid_df =
   read_csv("./data_mci/mci_amyloid.csv", skip = 1) |>
   janitor::clean_names() |>
   rename("id" = "study_id") 
+
 ```
 
-### Part 4. Combine both datasets
+### Part 5. Discuss important steps and relevant features
+
+
+
+### Part 6. Combine both datasets
 
 ```{r}
 colnames(Amyloid_df)[colnames(Amyloid_df) == "study_id"] = "id"
   
 mci_merge = 
   inner_join(Baseline_df, Amyloid_df, by = c("id")) 
-
-female_apoe4 = 
-  filter(Baseline_df, sex == "female")
-
-baseline_carrier = 
-  filter(female_apoe4, apoe4 == "carrier")
-
-nrow(female_apoe4)
-
-nrow(baseline_carrier)
 ```
 
-Of the `r nrow(female_apoe4)` women in the study, the proportion of them who are APOE4 carriers is `r nrow(baseline_carrier)`.
+
 
 
