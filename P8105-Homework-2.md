@@ -273,6 +273,12 @@ mean(Baseline_df$current_age)
 
     ## [1] 65.0286
 
+``` r
+filter(Baseline_df, age_at_onset !=".") |> nrow()
+```
+
+    ## [1] 93
+
 ### Part 2. Discuss important steps and relevant features
 
 The important steps in this import process included re-coding the `sex`
@@ -282,8 +288,9 @@ earlier or at the same age at baseline. From this, 4 participants were
 removed from the data set.
 
 In the study contained 479 participants and had 6 variables. Of the 479
-participants recruited at baseline, \_\_\_\_\_\_\_\_\_ developed MCI
-during the study.
+participants recruited at baseline, 93 developed MCI during the study.
+
+The average baseline age is 65.0286013.
 
 ### Part 3. Import, clean, and tidy amyloid dataset
 
@@ -327,3 +334,6 @@ nrow(baseline_carrier)
 ```
 
     ## [1] 63
+
+Of the 210 women in the study, the proportion of them who are APOE4
+carriers is 63.

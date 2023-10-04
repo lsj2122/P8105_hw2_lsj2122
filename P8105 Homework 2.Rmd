@@ -208,17 +208,18 @@ Baseline_df =
   ) |>
   filter(age_at_onset == "." | age_at_onset > current_age)
 
-
 mean(Baseline_df$current_age)
+
+filter(Baseline_df, age_at_onset !=".") |> nrow()
 ```
 
 ### Part 2. Discuss important steps and relevant features
 
 The important steps in this import process included re-coding the `sex` and `apoe4` variables from numeric to characters, and removing participants who did not meet the criteria by having an onset of MCI earlier or at the same age at baseline. From this, `r 483 - nrow(Baseline_df)` participants were removed from the data set. 
 
-In the study contained `r nrow(Baseline_df)` participants and had `r ncol(Baseline_df)` variables. Of the `r nrow(Baseline_df)` participants recruited at baseline, _________ developed MCI during the study. 
+In the study contained `r nrow(Baseline_df)` participants and had `r ncol(Baseline_df)` variables. Of the `r nrow(Baseline_df)` participants recruited at baseline, `r filter(Baseline_df, age_at_onset !=".") |> nrow()` developed MCI during the study. 
 
-
+The average baseline age is `r mean(Baseline_df$current_age)`. 
 
 ### Part 3. Import, clean, and tidy amyloid dataset
 
@@ -248,6 +249,6 @@ nrow(female_apoe4)
 nrow(baseline_carrier)
 ```
 
-
+Of the `r nrow(female_apoe4)` women in the study, the proportion of them who are APOE4 carriers is `r nrow(baseline_carrier)`.
 
 
