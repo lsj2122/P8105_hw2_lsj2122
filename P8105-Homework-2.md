@@ -191,9 +191,6 @@ Prof_TrashWheel_df =
   mutate(homes_powered, homes_powered = weight_tons*500/30)
 ```
 
-    ## New names:
-    ## • `` -> `...14`
-
 ### Part 3. Read and clean Gwynnda data
 
 ``` r
@@ -205,20 +202,12 @@ Gwynnda_TrashWheel_df =
   mutate(homes_powered, homes_powered = weight_tons*500/30)
 ```
 
-    ## New names:
-    ## • `` -> `...13`
-    ## • `` -> `...14`
-
 ### Part 4. Combine datasets
 
 ``` r
 Combined_TrashWheel_df = 
   full_join(Prof_TrashWheel_df, Gwynnda_TrashWheel_df)
 ```
-
-    ## Joining with `by = join_by(dumpster, month, year, date, weight_tons,
-    ## volume_cubic_yards, plastic_bottles, polystyrene, cigarette_butts,
-    ## plastic_bags, wrappers, homes_powered, x14, name)`
 
 ### Part 5. Describing the data
 
@@ -241,8 +230,10 @@ found in the `glass_bottles`, `wrappers`, and `sports_balls` columns,
 signifying that the trash was not collected by those specific dumpsters.
 
 The total weight of the trash that was collected by Professor Trash
-Wheel was 667.91 tons. And the total number of the cigarette butts that
-was collected by Gwynnda Trash Wheel was .
+Wheel was 216.26 tons.
+
+And the total number of the cigarette butts that was collected by
+Gwynnda Trash Wheel in July of 2021 was 1.63^{4} cigarette butts.
 
 # Problem 3
 
@@ -293,8 +284,6 @@ removed from the data set.
 In the study contained 479 participants and had 6 variables. Of the 479
 participants recruited at baseline, \_\_\_\_\_\_\_\_\_ developed MCI
 during the study.
-
-The average baseline age is 65.0286013
 
 ### Part 3. Import, clean, and tidy amyloid dataset
 
