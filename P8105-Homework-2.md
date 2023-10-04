@@ -358,3 +358,9 @@ In order to combine the `Amyloid_df` and `Baseline_df` data sets, we
 used the the `inner_join` function to join them and include only
 participants who appear in both by using the `id` variable. The
 resulting `mci_merge` data set has 471 participants.
+
+### Part 8. Exporting the combined dataset as CSV
+
+``` r
+write.csv(mci_merge, file = "mci_merge.csv")
+```
